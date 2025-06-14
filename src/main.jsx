@@ -37,12 +37,13 @@ const Header = () =>{
     )
 };
 
-const ResCard = () =>{
+const ResCard = (props) =>{
+    const {name,cusine}=props;
     return(
         <div className="res-card">
             <img className="res-image" src="https://im.whatshot.in/img/2021/Mar/header3-1615920876.jpg" alt="" />
-            <h3>Meghana Biriyani</h3>
-            <h4>Biriyani, North Indian</h4>
+            <h3>{name}</h3>
+            <h4>{cusine}</h4>
             <h4>4.4 stars</h4>
             <h4>38 minutes</h4>
         </div>
@@ -54,12 +55,9 @@ const Body = () =>{
         <div className="body">
             <h2>Search</h2>
             <div className="res-container">
-                <ResCard/>
-                <ResCard/>
-                <ResCard/>
-                <ResCard/>
-                <ResCard/>
-                <ResCard/>
+                <ResCard name="KFC" cusine="Birriyani" />
+                <ResCard name="MC" cusine="Burger"/>
+
             </div>
         </div>
     )
