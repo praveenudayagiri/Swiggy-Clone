@@ -6,9 +6,19 @@
 }
 
 .logo {
-  width: 150px;
-  height: 70px;
+  width: 120px;
+  height: 70px; 
+  object-fit: contain; 
+  transition: transform 0.3s ease-in-out; 
+  padding: 5px;
 }
+
+
+.logo:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 ul {
   display: flex;
 
@@ -19,20 +29,51 @@ ul {
   list-style: none;
   margin-left: 30px;
 }
-.res-container > .res-card > .res-image{
-  width:190px;
-  height: 35%;
-}
-.res-container > .res-card{
-
-  width:200px;
-  height: 300px;
-  padding: 5px;
-}
-.res-container > .res-card:hover{
-  border: 1px solid black;
-}
-.res-container{
-  margin: 10px;
+.res-container {
+  margin: 20px;
   display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.res-card {
+  width: 220px;
+  min-height: 230px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.res-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.res-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.res-card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 6px 0 4px;
+  color: #333;
+}
+
+.res-card h4 {
+  font-size: 14px;
+  color: #555;
+  margin: 3px 0;
 }
