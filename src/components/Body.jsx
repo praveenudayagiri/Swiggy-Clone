@@ -1,12 +1,26 @@
 import { useEffect, useState } from "react";
-import resList from "../utils/mockdata";
 import ResCard from "./ResCard";
 const Body = () =>{
-    const [ ListOfRestaurant, setListOfRestaurant ] = useState(resList);
+    const [ ListOfRestaurant, setListOfRestaurant ] = useState([]);
 
     useEffect(()=>{
-        console.log("useEffect Rendered");
-    });
+        FetchData();
+    },[]);
+    const FetchData = async()=>{
+        const data = await fetch(
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.3066525&lng=80.4365402&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        );
+        const json = await data.json();
+        const dynamicData = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+        console.log(dynamicData);
+        setListOfRestaurant(dynamicData);
+    };
+
+    if(ListOfRestaurant.length===0){
+        return(
+            <h2>Loading.......</h2>
+        )
+    }
 
     return(
         <div className="body">
