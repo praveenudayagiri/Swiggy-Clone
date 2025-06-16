@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import resList from "../utils/mockdata";
 import ResCard from "./ResCard";
 const Body = () =>{
     const [ ListOfRestaurant, setListOfRestaurant ] = useState(resList);
+
+    useEffect(()=>{
+        console.log("useEffect Rendered");
+    });
+
     return(
         <div className="body">
             <h2>Search</h2>
