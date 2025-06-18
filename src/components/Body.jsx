@@ -13,7 +13,6 @@ const Body = () =>{
         );
         const json = await data.json();
         const dynamicData = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
-        console.log(dynamicData);
         setListOfRestaurant(dynamicData);
     };
 
@@ -23,7 +22,9 @@ const Body = () =>{
         )
     }
 
-    return(
+    return ListOfRestaurant.length===0 ?(
+        <Shimmer/>
+    ): (
         <div className="body">
             <h2>Search</h2>
             <button onClick={()=>{
