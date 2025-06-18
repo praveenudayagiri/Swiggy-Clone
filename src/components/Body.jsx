@@ -3,6 +3,7 @@ import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
 const Body = () =>{
     const [ ListOfRestaurant, setListOfRestaurant ] = useState([]);
+    const [filterdRestaurants, setfilteredRestaurants] = useState([]);
     const[searchTxt,setsearchTxt] = useState("");
 
     useEffect(()=>{
@@ -14,7 +15,9 @@ const Body = () =>{
         );
         const json = await data.json();
         const dynamicData = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+        /** Saving Data in Two Lists and manipulating second List eveytimw while rendering */
         setListOfRestaurant(dynamicData);
+        setfilteredRestaurants(dynamicData);
     };
 
     if(ListOfRestaurant.length===0){
@@ -35,25 +38,26 @@ const Body = () =>{
                 }}  
                 />
                 <button className="search-btn"
+                /*** Rather than getting data from filterRestaurants we are getting filtered data from original data which we got from API */
                     onClick={()=>{
                         const filterdList= ListOfRestaurant.filter((res)=>{
                             return res.info.name.includes(searchTxt);
                         })
-                        setListOfRestaurant(filterdList);
+                        setfilteredRestaurants(filterdList);
                     }}
                 >Search</button>
             <button onClick={()=>{
                 const filterdList = ListOfRestaurant.filter((res)=>{
                     return res.info.avgRating > 4
                 })
-                setListOfRestaurant(filterdList);
+                setfilteredRestaurants(filterdList);
             }
             
             }>Top Rated Restaurant</button>
             </div>
             <div className="res-container">
                 {
-                    ListOfRestaurant.map((restaurant)=>(
+                    filterdRestaurants.map((restaurant)=>(
                         <ResCard key={restaurant.info.id} resData={restaurant} />
                     ))
                 }
