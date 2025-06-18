@@ -3,6 +3,7 @@ import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
 const Body = () =>{
     const [ ListOfRestaurant, setListOfRestaurant ] = useState([]);
+    const[searchTxt,setsearchTxt] = useState("");
 
     useEffect(()=>{
         FetchData();
@@ -26,7 +27,21 @@ const Body = () =>{
         <Shimmer/>
     ): (
         <div className="body">
-            <h2>Search</h2>
+            <div className="filter">
+                <input type="text" value={searchTxt} 
+                /*** Every time we type each letter searchTxt will be updated and whole component is re-rendered */
+                onChange={(e)=>{
+                    setsearchTxt(e.target.value);
+                }}  
+                />
+                <button className="search-btn"
+                    onClick={()=>{
+                        const filterdList= ListOfRestaurant.filter((res)=>{
+                            return res.info.name.includes(searchTxt);
+                        })
+                        setListOfRestaurant(filterdList);
+                    }}
+                >Search</button>
             <button onClick={()=>{
                 const filterdList = ListOfRestaurant.filter((res)=>{
                     return res.info.avgRating > 4
@@ -35,6 +50,7 @@ const Body = () =>{
             }
             
             }>Top Rated Restaurant</button>
+            </div>
             <div className="res-container">
                 {
                     ListOfRestaurant.map((restaurant)=>(
