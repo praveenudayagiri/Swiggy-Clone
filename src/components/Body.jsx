@@ -18,6 +18,7 @@ const Body = () =>{
         /** Saving Data in Two Lists and manipulating second List eveytimw while rendering */
         setListOfRestaurant(dynamicData);
         setfilteredRestaurants(dynamicData);
+        
     };
 
     if(ListOfRestaurant.length===0){
@@ -40,9 +41,11 @@ const Body = () =>{
                 <button className="search-btn"
                 /*** Rather than getting data from filterRestaurants we are getting filtered data from original data which we got from API */
                     onClick={()=>{
-                        const filterdList= ListOfRestaurant.filter((res)=>{
-                            return res.info.name.includes(searchTxt);
-                        })
+                        const filterdList = ListOfRestaurant.filter((res)=>{
+                            return res.info.name.toLowerCase().includes(searchTxt.toLowerCase());
+                        });
+
+                  
                         setfilteredRestaurants(filterdList);
                     }}
                 >Search</button>
