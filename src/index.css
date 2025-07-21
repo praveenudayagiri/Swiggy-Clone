@@ -143,3 +143,6 @@ ul {
 .search-btn{
   margin: 0px 10px;
 }
+a{
+  text-decoration: none;
+}
