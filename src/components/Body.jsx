@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
+import { HOME_RESTAURANTS_API_URL } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () =>{
     const [ ListOfRestaurant, setListOfRestaurant ] = useState([]);
     const [filterdRestaurants, setfilteredRestaurants] = useState([]);
@@ -11,9 +13,7 @@ const Body = () =>{
         FetchData();
     },[]);
     const FetchData = async()=>{
-        const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.3066525&lng=80.4365402&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        );
+        const data = await fetch(HOME_RESTAURANTS_API_URL);
         const json = await data.json();
         const dynamicData = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
         /** Saving Data in Two Lists and manipulating second List eveytimw while rendering */
@@ -21,6 +21,12 @@ const Body = () =>{
         setfilteredRestaurants(dynamicData);
         
     };
+    const onlineStaus=useOnlineStatus();
+    if(!onlineStaus){
+        return(
+            <h2>Look like your are offline now</h2>
+        )
+    }
 
     if(ListOfRestaurant.length===0){
         return(
