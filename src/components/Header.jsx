@@ -7,13 +7,14 @@ const Header = () =>{
     const [loginbtn,setloginbtn]=useState("login");
     const onlineStaus=useOnlineStatus();
     useEffect(()=>{
-        //console.log("useEffect Rendered");
+        
     },[loginbtn]);
     return(
         <div className="header">
             <img className="logo" src={LOGO_URL} alt="" />
             <ul className="nav-items">
                 <li>Online Staus:{(onlineStaus?"✅":"❌")}</li>
+                <li> <Link to="/grosory" >Grosory</Link>  </li>
                 <li> <Link to="/" >Home</Link> </li>
                 <li> <Link to="/about">About </Link> </li>
                 <li>Cart</li>

@@ -1,5 +1,4 @@
 // src/main.jsx
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/App";
@@ -9,6 +8,8 @@ import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Body from "./components/Body";
 import ResMenu from "./components/ResMenu";
+import GrosoryWrapper from "./components/GrosoryWrap";
+
 
 const appRouter = createBrowserRouter([
   { 
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
       { 
         path: "/contact", 
         element: <Contact /> 
+      },
+      {
+        path:"/grosory",
+        element:<GrosoryWrapper/>
       },
       {
         path:"/restaurants/:resId",
