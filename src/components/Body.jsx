@@ -4,10 +4,12 @@ import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
 import { HOME_RESTAURANTS_API_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import withPromotedLabel from "./withPromotedLabel";
 const Body = () =>{
     const [ ListOfRestaurant, setListOfRestaurant ] = useState([]);
     const [filterdRestaurants, setfilteredRestaurants] = useState([]);
     const[searchTxt,setsearchTxt] = useState("");
+    const ResCardPrmotoed=withPromotedLabel(ResCard);
 
     useEffect(()=>{
         FetchData();
@@ -66,13 +68,20 @@ const Body = () =>{
             }>Top Rated Restaurant</button>
             </div>
             <div className="res-container">
-                {
-                    filterdRestaurants.map((restaurant)=>(
-                       <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id}> <ResCard  resData={restaurant} /> </Link>
-                    ))
-                }
+            {
+                filterdRestaurants.map((restaurant) => {
+                const isPromoted = restaurant.info.differentiatedUi?.displayType === "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT";
+                const Card = isPromoted ? ResCardPrmotoed : ResCard;
 
+                return (
+                    <Link to={"/restaurants/" + restaurant.info.id} key={restaurant.info.id}>
+                    <Card resData={restaurant} />
+                    </Link>
+                );
+                })
+            }
             </div>
+
         </div>
     )
 };

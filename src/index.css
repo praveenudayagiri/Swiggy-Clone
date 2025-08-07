@@ -151,3 +151,21 @@ a{
   border: 1px solid black;
   margin-bottom: 5px;
 }
+.res-card-wrapper {
+  position: relative; /* This sets the reference for the absolute label */
+  display: inline-block; /* Prevents label from pushing layout */
+}
+
+.promo-card-label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: red;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 0 0 5px 0;
+  z-index: 10; /* Ensures it stays on top */
+}
+
