@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ResCategory from "./ResCategory";
+import { useState } from "react";
 
 const ResMenu = () => {
  
   const { resId }=useParams();
   const resMenuInfo=useRestaurantMenu(resId);
+  const [showIndex,setshowIndex]=useState(null);
 
   if (!resMenuInfo) {
     return <Shimmer />;
@@ -32,8 +34,11 @@ const ResMenu = () => {
       <h4 className="resmenu-resdetails">Delivery Time: {info.sla?.deliveryTime} mins</h4>
       <h4 className="resmenu-resdetails">Price for two: {info.costForTwoMessage}</h4> 
       {
-        categories.map((category) => {
-          return <ResCategory key={category.card?.card?.title} data={category.card.card} />;
+        categories.map((category,index) => {
+          return <ResCategory key={category.card?.card?.title} data={category.card.card} 
+          showItems={index===showIndex ? true:false} 
+          setshowIndex={()=> setshowIndex(index)}
+          />;
         })
       }
 

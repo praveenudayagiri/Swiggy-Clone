@@ -1,10 +1,10 @@
 import { useState } from "react";
 import ItemsList from "./ItemsList";
 
-const ResCategory = ({data}) =>{
-    const [showItems,setshowItems]=useState(false);
+const ResCategory = ({data,showItems,setshowIndex}) =>{
+    
     const handleClick = ()=>{
-        setshowItems(!showItems);
+        setshowIndex();
     }
     return(
         <div className="rescategory-accordian">
