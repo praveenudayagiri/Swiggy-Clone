@@ -169,3 +169,91 @@ a{
   z-index: 10; /* Ensures it stays on top */
 }
 
+.menu{
+  text-align: left;
+  margin: auto;
+  width: 800px;
+  
+  
+}
+.resmenu-resname{
+  color: black;
+  font-size:xx-large;
+
+  text-align: left;
+
+}
+
+.rescategory-accordian{
+  width: auto;
+  text-align: center;
+  margin: 20px;
+  background-color: #eeecec;
+}
+.accordian-header{
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: large;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.resmenu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #0d0d0d; 
+}
+
+.resmenu-itemleft {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  padding: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.resmenu-itemleft > span {
+  font-weight: bold;
+}
+
+.resmenu-itemright {
+  width: 200px;
+  padding-right: 10px;
+  flex-shrink: 0;
+  text-align: right;
+  position: relative; /* Important for absolute positioning of the button */
+}
+
+.resmenu-itemright > img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.resmenu-itemright > button {
+  position: absolute;
+  bottom: 10px; /* Adjust distance from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: #ff6f00; /* Swiggy orange */
+  font-weight: bold;
+  border: 1px solid #ff6f00;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resmenu-itemright > button:hover {
+  background-color: #ff6f00;
+  color: white;
+}
+
