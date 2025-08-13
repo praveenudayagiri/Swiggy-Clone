@@ -14,7 +14,8 @@ const Body = () =>{
     useEffect(()=>{
         FetchData();
     },[]);
-    const FetchData = async()=>{
+
+const FetchData = async()=>{
         const data = await fetch(HOME_RESTAURANTS_API_URL);
         const json = await data.json();
         const dynamicData = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
@@ -23,6 +24,7 @@ const Body = () =>{
         setfilteredRestaurants(dynamicData);
         
     };
+
     const onlineStaus=useOnlineStatus();
     if(!onlineStaus){
         return(
