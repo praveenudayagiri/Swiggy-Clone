@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import ItemsList from "./ItemsList";
 
 const ResCategory = ({data,showItems,setshowIndex}) =>{

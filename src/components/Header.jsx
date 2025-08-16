@@ -3,11 +3,13 @@ import { LOGO_URL } from "../utils/constants";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 
 const Header = () =>{
     const [loginbtn,setloginbtn]=useState("login");
     const onlineStaus=useOnlineStatus();
     const {loggedinUser} = useContext(userContext);
+    const cart=useSelector((store)=> store.cart.items);
     useEffect(()=>{
         
     },[loginbtn]);
@@ -19,7 +21,7 @@ const Header = () =>{
                 <li> <Link to="/" >Home</Link> </li>
                 <li> <Link to="/grosory" >Grosory</Link>  </li>
                 <li> <Link to="/about">About </Link> </li>
-                <li>Cart</li>
+                <li> <Link to="/cart" >Cart-{cart.length+" items"}</Link></li>
                 <li><Link to="/contact"> Contact</Link></li>
                 <button className="login-btn" onClick={()=>{
                     loginbtn=="login"? 
